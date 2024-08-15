@@ -1,0 +1,17 @@
+Geant4 release:
+
+source /cvmfs/geant4.cern.ch/geant4/11.2/x86_64-el9-gcc11-optdeb-MT/CMake-setup.sh
+
+
+
+
+Geant4 lcg release: 
+
+source /cvmfs/sft.cern.ch/lcg/views/LCG_geant4ext20230707/x86_64-centos8-gcc11-opt/setup.sh
+
+
+
+
+ML lcg release:
+
+source /cvmfs/sft.cern.ch/lcg/views/LCG_104a_cuda/x86_64-centos8-gcc11-opt/setup.sh
