@@ -15,7 +15,7 @@ def sampling(args):
     
     return z_mean + K.exp(0.5 * z_log_var) * epsilon
 
-def build_vae(input_shape, latent_dim=32, learning_rate=0.0001):
+def build_vae(input_shape, latent_dim=32, learning_rate=0.00001):
     # Encoder
     inputs = Input(shape=input_shape)
     
@@ -76,7 +76,7 @@ def build_vae(input_shape, latent_dim=32, learning_rate=0.0001):
     outputs = decoder(encoder(inputs)[2])
     vae = Model(inputs, outputs)
 
-    optimizer = Adam(learning_rate=learning_rate)
+    optimizer = Adam(learning_rate=0.00001)
 
     # Loss
     reconstruction_loss = tf.reduce_mean(tf.square(inputs - outputs))
@@ -90,4 +90,8 @@ def build_vae(input_shape, latent_dim=32, learning_rate=0.0001):
     return vae, encoder, decoder
 
 input_shape = (22, 16, 35, 1)  
-vae, encoder, decoder = build_vae(input_shape, latent_dim=32, learning_rate=0.0001)
+vae, encoder, decoder = build_vae(input_shape, latent_dim=32, learning_rate=0.00001)
+
+def train_vae(vae, data, epochs=100, batch_size=8):
+    history = vae.fit(data, data, epochs=epochs, batch_size=batch_size, validation_split=0.15)
+    return history
